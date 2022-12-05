@@ -1,5 +1,6 @@
 $(document).ready(function () {
     renderCurrentTime();
+    renderQuote()
 });
 
 
@@ -12,3 +13,15 @@ fetch(url)
 });
 }
 
+function renderQuote() {
+    let url=`https://api.quotable.io/random`;
+    fetch(url)
+    .then(res => res.json())
+    .then((data) => {
+     console.log(data)
+     let content = `" ${data['content']}"`;
+     let author = `- ${data['author']}-`;
+     $('#content').text(content);
+     $('#author').text(author);
+    })
+}
